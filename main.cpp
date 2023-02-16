@@ -1,5 +1,6 @@
 #include "SpreadsheetCell.h"
 #include "IntCell.h"
+#include "StringCell.h"
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -10,20 +11,15 @@ void testIntCell();
 
 void testDoubleCell();
 
+void testStringCell();
+
 template<typename T>
-void printCells(vector<vector<unique_ptr<SpreadsheetCell<T>>>> &vec) {
-    for (int i = 0; i < size(vec); ++i) {
-        for (int j = 0; j < size(vec[i]); ++j) {
-            vec[i][j]->printCell(cout);
-        }
-        cout << endl;
-    }
-    cout << endl;
-}
+void printCells(vector<vector<unique_ptr<SpreadsheetCell<T>>>> &vec);
 
 int main() {
     testIntCell();
     testDoubleCell();
+    testStringCell();
 
     vector<vector<unique_ptr<SpreadsheetCell<int>>>> intCells;
     vector<unique_ptr<SpreadsheetCell<int>>> intRow;
@@ -53,7 +49,7 @@ int main() {
 
     vector<vector<unique_ptr<SpreadsheetCell<string>>>> stringCells;
     vector<unique_ptr<SpreadsheetCell<string>>> strRow;
-    strRow.push_back(make_unique<DoubleCell>());
+    strRow.push_back(make_unique<StringCell>());
     strRow.push_back(make_unique<DoubleCell>(3.7));
     doubleCells.push_back(move(strRow));
     strRow.clear();
@@ -212,4 +208,89 @@ void testDoubleCell() {
     if (!(i1 >= i2)) {
         cout << "FAILED >= test case 2" << endl;
     }
+}
+
+void testStringCell() {
+//    DoubleCell i1;
+//    DoubleCell i2(.5);
+//
+//    DoubleCell i3 = i1 + i2;
+//    if (i3.getValue()) {
+//        cout << "FAILED nullopt + test case" << endl;
+//    }
+//    i3 = i1 - i2;
+//    if (i3.getValue()) {
+//        cout << "FAILED nullopt - test case" << endl;
+//    }
+//    i3 = i2 * i1;
+//    if (i3.getValue()) {
+//        cout << "FAILED nullopt * test case" << endl;
+//    }
+//    i3.setValue(4);
+//    i3 += i2;
+//    if (i3.getValue() != 4.5) {
+//        cout << "FAILED += test case" << endl;
+//    }
+//    i3 -= i1;
+//    if (i3.getValue() != 4.5) {
+//        cout << "FAILED -= nullopt test case" << endl;
+//    }
+//    i3 *= i2;
+//    if (i3.getValue() != 2.25) {
+//        cout << "FAILED *= test case" << endl;
+//    }
+//    i3 /= DoubleCell(10);
+//    if (i3.getValue() != 0.225) {
+//        cout << "FAILED /= test case" << endl;
+//    }
+//
+//    i1.setValue(0.2);
+//    cout << "Testing DoubleCell print and setNumChars methods" << endl;
+//    i1.printCell(cout);
+//    i2.printCell(cout);
+//    cout << endl;
+//    i1.setNumChars(5);
+//    i1.printCell(cout);
+//    cout << endl << "End testing DoubleCell print and setNumChars methods" << endl;
+//
+//    cout << endl << boolalpha;
+//    if (i1 == i2) {
+//        cout << "FAILED == test case" << endl;
+//    }
+//    if (!(i1 != i2)) {
+//        cout << "FAILED != test case" << endl;
+//    }
+//    if (!(i1 < i2)) {
+//        cout << "FAILED < test case" << endl;
+//    }
+//    if (!(i1 <= i2)) {
+//        cout << "FAILED <= test case" << endl;
+//    }
+//    if (i1 > i2) {
+//        cout << "FAILED > test case" << endl;
+//    }
+//    if (i1 >= i2) {
+//        cout << "FAILED >= test case" << endl;
+//    }
+//    i1.setValue(.5);
+//    if (!(i1 == i2)) {
+//        cout << "FAILED == test case 2" << endl;
+//    }
+//    if (!(i1 <= i2)) {
+//        cout << "FAILED <= test case 2" << endl;
+//    }
+//    if (!(i1 >= i2)) {
+//        cout << "FAILED >= test case 2" << endl;
+//    }
+}
+
+template<typename T>
+void printCells(vector<vector<unique_ptr<SpreadsheetCell<T>>>> &vec) {
+    for (int i = 0; i < size(vec); ++i) {
+        for (int j = 0; j < size(vec[i]); ++j) {
+            vec[i][j]->printCell(cout);
+        }
+        cout << endl;
+    }
+    cout << endl;
 }
