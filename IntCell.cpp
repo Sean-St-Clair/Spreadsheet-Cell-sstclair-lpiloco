@@ -4,11 +4,9 @@
 using namespace std;
 
 IntCell::IntCell() : SpreadsheetCell() {
-
 }
 
 IntCell::IntCell(int value) : SpreadsheetCell(value) {
-
 }
 
 void IntCell::printCell(std::ostream &outs) const {
