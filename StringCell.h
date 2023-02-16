@@ -20,17 +20,9 @@ public:
 
     StringCell &operator+=(const StringCell &rhs);
 
-    friend StringCell operator-(const StringCell &lhs, const StringCell &rhs);
+    friend StringCell operator*(const StringCell &lhs, const unsigned int &rhs);
 
-    StringCell &operator-=(const StringCell &rhs);
-
-    friend StringCell operator*(const StringCell &lhs, const StringCell &rhs);
-
-    StringCell &operator*=(const StringCell &rhs);
-
-    // TODO: After implementing StringCell, uncomment and implement the following function
-    // friend StringCell operator / (const StringCell &lhs, const StringCell &rhs);
-    StringCell &operator/=(const StringCell &rhs);
+    StringCell &operator*=(const unsigned int &rhs);
 
     friend bool operator==(const StringCell &lhs, const StringCell &rhs);
 

@@ -4,18 +4,16 @@
 using namespace std;
 
 StringCell::StringCell() : SpreadsheetCell() {
-
 }
 
-StringCell::StringCell(int value) : SpreadsheetCell(value) {
-
+StringCell::StringCell(string value) : SpreadsheetCell(value) {
 }
 
 void StringCell::printCell(std::ostream &outs) const {
     if (value) {
-        outs << "|" << right << setw(numChars) << *value;
+        outs << "|" << left << setw(numChars) << *value;
     } else {
-        outs << "|" << right << setw(numChars) << "";
+        outs << "|" << left << setw(numChars) << "";
     }
 }
 
@@ -38,51 +36,30 @@ StringCell &StringCell::operator+=(const StringCell &rhs) {
     return *this;
 }
 
-StringCell operator-(const StringCell &lhs, const StringCell &rhs) {
+StringCell operator*(const StringCell &lhs, const unsigned int &rhs) {
     StringCell returnVal;
-    if (lhs.value && rhs.value) {
-        returnVal.setValue(*lhs.value - *rhs.value);
-    } else {
-        // One or both of the parameters are nullopt.
-        returnVal.setToNull();
-    }
-    return returnVal;
-}
-
-StringCell &StringCell::operator-=(const StringCell &rhs) {
-    // if either value is nullopt, no change to `this`
-    if (rhs.value && value) {
-        setValue(*value - *rhs.value);
-    }
-    return *this;
-}
-
-StringCell operator*(const StringCell &lhs, const StringCell &rhs) {
-    StringCell returnVal;
-    if (lhs.value && rhs.value) {
-        returnVal.setValue(*lhs.value * *rhs.value);
+    if (lhs.value && rhs >= 0) {
+        returnVal.setValue("");
+        for (int i = 0; i < rhs; i++) {
+            returnVal.setValue(*returnVal.getValue() + *lhs.getValue());
+        }
     } else {
         returnVal.setToNull();
     }
     return returnVal;
 }
 
-StringCell &StringCell::operator*=(const StringCell &rhs) {
+StringCell &StringCell::operator*=(const unsigned int &rhs) {
     // if either value is nullopt, no change to `this`
-    if (rhs.value && value) {
-        setValue(*value * *rhs.value);
+    if (value && rhs >= 0) {
+        string repeat = *value;
+        setValue("");
+        for (int i = 0; i < rhs; i++) {
+            setValue(*getValue() + repeat);
+        }
     }
     return *this;
 }
-
-StringCell &StringCell::operator/=(const StringCell &rhs) {
-    // if either value is nullopt, no change to `this`
-    if (rhs.value && value && *rhs.value != 0) {
-        setValue(*value / *rhs.value);
-    }
-    return *this;
-}
-
 
 bool operator==(const StringCell &lhs, const StringCell &rhs) {
     if (lhs.value && rhs.value) {
