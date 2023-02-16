@@ -10,22 +10,58 @@ void testIntCell();
 
 void testDoubleCell();
 
+template<typename T>
+void printCells(vector<vector<unique_ptr<SpreadsheetCell<T>>>> &vec) {
+    for (int i = 0; i < size(vec); ++i) {
+        for (int j = 0; j < size(vec[i]); ++j) {
+            vec[i][j]->printCell(cout);
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+
 int main() {
     testIntCell();
     testDoubleCell();
 
-    vector<vector<unique_ptr<SpreadsheetCell<int>>>> cells;
-    vector<unique_ptr<SpreadsheetCell<int>>> row;
-    row.push_back(make_unique<IntCell>());
-    row.push_back(make_unique<IntCell>(300000));
-    cells.push_back(move(row));
-    row.clear();
-    row.push_back(make_unique<IntCell>(-5));
-    row.push_back(make_unique<IntCell>(90));
-    cells.push_back(move(row));
-    // TODO: Create a function to print the 2-D vector }
+    vector<vector<unique_ptr<SpreadsheetCell<int>>>> intCells;
+    vector<unique_ptr<SpreadsheetCell<int>>> intRow;
+    intRow.push_back(make_unique<IntCell>());
+    intRow.push_back(make_unique<IntCell>(300000));
+    intCells.push_back(move(intRow));
+    intRow.clear();
+    intRow.push_back(make_unique<IntCell>(-5));
+    intRow.push_back(make_unique<IntCell>(90));
+    intCells.push_back(move(intRow));
+    // Create a function to print the 2-D vector }
     // It should work for all subclasses of SpreadsheetCell.
-    //printCells(cells);
+    cout << endl << "Integer cells:" << endl;
+    printCells(intCells);
+
+    vector<vector<unique_ptr<SpreadsheetCell<double>>>> doubleCells;
+    vector<unique_ptr<SpreadsheetCell<double>>> doubRow;
+    doubRow.push_back(make_unique<DoubleCell>());
+    doubRow.push_back(make_unique<DoubleCell>(3.7));
+    doubleCells.push_back(move(doubRow));
+    doubRow.clear();
+    doubRow.push_back(make_unique<DoubleCell>(-7.7));
+    doubRow.push_back(make_unique<DoubleCell>(4.1));
+    doubleCells.push_back(move(doubRow));
+    cout << endl << "Integer cells:" << endl;
+    printCells(doubleCells);
+
+    vector<vector<unique_ptr<SpreadsheetCell<string>>>> stringCells;
+    vector<unique_ptr<SpreadsheetCell<string>>> strRow;
+    strRow.push_back(make_unique<DoubleCell>());
+    strRow.push_back(make_unique<DoubleCell>(3.7));
+    doubleCells.push_back(move(strRow));
+    strRow.clear();
+    strRow.push_back(make_unique<DoubleCell>(-7.7));
+    strRow.push_back(make_unique<DoubleCell>(4.1));
+    doubleCells.push_back(move(strRow));
+    cout << endl << "Integer cells:" << endl;
+    printCells(doubleCells);
 
     return 0;
 }
