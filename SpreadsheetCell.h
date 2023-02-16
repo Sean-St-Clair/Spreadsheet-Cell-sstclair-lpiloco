@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <optional>
+
 using std::optional;
 using std::nullopt;
 using std::make_optional;
@@ -54,7 +55,7 @@ public:
         }
     }
 
-    virtual void printCell(std::ostream& outs) const = 0;
+    virtual void printCell(std::ostream &outs) const = 0;
 };
 
 #endif

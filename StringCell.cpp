@@ -1,17 +1,17 @@
-#include "IntCell.h"
+#include "StringCell.h"
 #include <iomanip>
 
 using namespace std;
 
-IntCell::IntCell() : SpreadsheetCell() {
+StringCell::StringCell() : SpreadsheetCell() {
 
 }
 
-IntCell::IntCell(int value) : SpreadsheetCell(value) {
+StringCell::StringCell(int value) : SpreadsheetCell(value) {
 
 }
 
-void IntCell::printCell(std::ostream &outs) const {
+void StringCell::printCell(std::ostream &outs) const {
     if (value) {
         outs << "|" << right << setw(numChars) << *value;
     } else {
@@ -19,8 +19,8 @@ void IntCell::printCell(std::ostream &outs) const {
     }
 }
 
-IntCell operator+(const IntCell &lhs, const IntCell &rhs) {
-    IntCell returnVal;
+StringCell operator+(const StringCell &lhs, const StringCell &rhs) {
+    StringCell returnVal;
     if (lhs.value && rhs.value) {
         returnVal.setValue(*lhs.value + *rhs.value);
     } else {
@@ -30,7 +30,7 @@ IntCell operator+(const IntCell &lhs, const IntCell &rhs) {
     return returnVal;
 }
 
-IntCell &IntCell::operator+=(const IntCell &rhs) {
+StringCell &StringCell::operator+=(const StringCell &rhs) {
     // if either value is nullopt, no change to `this`
     if (rhs.value && value) {
         setValue(*value + *rhs.value);
@@ -38,8 +38,8 @@ IntCell &IntCell::operator+=(const IntCell &rhs) {
     return *this;
 }
 
-IntCell operator-(const IntCell &lhs, const IntCell &rhs) {
-    IntCell returnVal;
+StringCell operator-(const StringCell &lhs, const StringCell &rhs) {
+    StringCell returnVal;
     if (lhs.value && rhs.value) {
         returnVal.setValue(*lhs.value - *rhs.value);
     } else {
@@ -49,7 +49,7 @@ IntCell operator-(const IntCell &lhs, const IntCell &rhs) {
     return returnVal;
 }
 
-IntCell &IntCell::operator-=(const IntCell &rhs) {
+StringCell &StringCell::operator-=(const StringCell &rhs) {
     // if either value is nullopt, no change to `this`
     if (rhs.value && value) {
         setValue(*value - *rhs.value);
@@ -57,8 +57,8 @@ IntCell &IntCell::operator-=(const IntCell &rhs) {
     return *this;
 }
 
-IntCell operator*(const IntCell &lhs, const IntCell &rhs) {
-    IntCell returnVal;
+StringCell operator*(const StringCell &lhs, const StringCell &rhs) {
+    StringCell returnVal;
     if (lhs.value && rhs.value) {
         returnVal.setValue(*lhs.value * *rhs.value);
     } else {
@@ -67,7 +67,7 @@ IntCell operator*(const IntCell &lhs, const IntCell &rhs) {
     return returnVal;
 }
 
-IntCell &IntCell::operator*=(const IntCell &rhs) {
+StringCell &StringCell::operator*=(const StringCell &rhs) {
     // if either value is nullopt, no change to `this`
     if (rhs.value && value) {
         setValue(*value * *rhs.value);
@@ -75,7 +75,7 @@ IntCell &IntCell::operator*=(const IntCell &rhs) {
     return *this;
 }
 
-IntCell &IntCell::operator/=(const IntCell &rhs) {
+StringCell &StringCell::operator/=(const StringCell &rhs) {
     // if either value is nullopt, no change to `this`
     if (rhs.value && value && *rhs.value != 0) {
         setValue(*value / *rhs.value);
@@ -84,7 +84,7 @@ IntCell &IntCell::operator/=(const IntCell &rhs) {
 }
 
 
-bool operator==(const IntCell &lhs, const IntCell &rhs) {
+bool operator==(const StringCell &lhs, const StringCell &rhs) {
     if (lhs.value && rhs.value) {
         return (*lhs.value == *rhs.value);
     } else if (!lhs.value && !rhs.value) {
@@ -94,25 +94,25 @@ bool operator==(const IntCell &lhs, const IntCell &rhs) {
     return false;
 }
 
-bool operator!=(const IntCell &lhs, const IntCell &rhs) {
+bool operator!=(const StringCell &lhs, const StringCell &rhs) {
     return !(lhs == rhs);
 }
 
-bool operator<(const IntCell &lhs, const IntCell &rhs) {
+bool operator<(const StringCell &lhs, const StringCell &rhs) {
     if (lhs.value && rhs.value) {
         return (*lhs.value < *rhs.value);
     }
     return false;
 }
 
-bool operator<=(const IntCell &lhs, const IntCell &rhs) {
+bool operator<=(const StringCell &lhs, const StringCell &rhs) {
     return (lhs < rhs || lhs == rhs);
 }
 
-bool operator>(const IntCell &lhs, const IntCell &rhs) {
+bool operator>(const StringCell &lhs, const StringCell &rhs) {
     return !(lhs <= rhs);
 }
 
-bool operator>=(const IntCell &lhs, const IntCell &rhs) {
+bool operator>=(const StringCell &lhs, const StringCell &rhs) {
     return !(lhs < rhs);
 }

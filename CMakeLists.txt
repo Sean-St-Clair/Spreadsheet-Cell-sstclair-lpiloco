@@ -3,4 +3,4 @@ project(SpreadsheetCell)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(SpreadsheetCell main.cpp IntCell.cpp)
+add_executable(SpreadsheetCell main.cpp IntCell.cpp DoubleCell.cpp)
