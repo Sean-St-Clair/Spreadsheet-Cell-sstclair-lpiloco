@@ -11,9 +11,9 @@ DoubleCell::DoubleCell(double value) : SpreadsheetCell(value) {
 
 void DoubleCell::printCell(std::ostream &outs) const {
     if (value) {
-        outs << "|" << right << setw(numChars) << *value;
+        outs << "|" << right << fixed << setprecision(2) << setw(numChars) << *value;
     } else {
-        outs << "|" << right << setw(numChars) << "";
+        outs << "|" << right << fixed << setprecision(2) << setw(numChars) << "";
     }
 }
 
