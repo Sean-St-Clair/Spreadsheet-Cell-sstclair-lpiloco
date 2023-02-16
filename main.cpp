@@ -30,7 +30,7 @@ int main() {
     intRow.push_back(make_unique<IntCell>(-5));
     intRow.push_back(make_unique<IntCell>(90));
     intCells.push_back(move(intRow));
-    // Create a function to print the 2-D vector }
+    // Create a function to print the 2-D vector
     // It should work for all subclasses of SpreadsheetCell.
     cout << endl << "Integer cells:" << endl;
     printCells(intCells);
@@ -79,8 +79,13 @@ void testIntCell() {
         cout << "FAILED nullopt * test case" << endl;
     }
     DoubleCell i4 = i2 / i1;
-    if(i4.getValue()) {
+    if (i4.getValue()) {
         cout << "FAILED nullopt / test case" << endl;
+    }
+    i3.setValue(2);
+    i4.setValue(*(i2 / i3).getValue());
+    if (*i4.getValue() != 3.5) {
+        cout << "Failed / test cast " << *i4.getValue() << endl;
     }
     i3.setValue(4);
     i3 += i2;
@@ -157,8 +162,13 @@ void testDoubleCell() {
         cout << "FAILED nullopt * test case" << endl;
     }
     DoubleCell i4 = i2 / i1;
-    if(i4.getValue()) {
+    if (i4.getValue()) {
         cout << "FAILED nullopt / test case" << endl;
+    }
+    i3.setValue(2);
+    i4.setValue(*(i2 / i3).getValue());
+    if (*i4.getValue() != .25) {
+        cout << "Failed / test cast" << endl;
     }
     i3.setValue(4);
     i3 += i2;

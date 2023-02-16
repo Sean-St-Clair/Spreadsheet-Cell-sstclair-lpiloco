@@ -76,7 +76,7 @@ IntCell &IntCell::operator*=(const IntCell &rhs) {
 DoubleCell operator/(const IntCell &lhs, const IntCell &rhs) {
     DoubleCell returnVal;
     if (lhs.value && rhs.value && *rhs.value != 0) {
-        returnVal.setValue(*lhs.value / *rhs.value);
+        returnVal.setValue((double)*lhs.value / *rhs.value);
     } else {
         returnVal.setToNull();
     }
