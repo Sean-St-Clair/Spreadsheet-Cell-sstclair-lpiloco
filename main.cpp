@@ -78,6 +78,10 @@ void testIntCell() {
     if (i3.getValue()) {
         cout << "FAILED nullopt * test case" << endl;
     }
+    DoubleCell i4 = i2 / i1;
+    if(i4.getValue()) {
+        cout << "FAILED nullopt / test case" << endl;
+    }
     i3.setValue(4);
     i3 += i2;
     if (i3.getValue() != 11) {
@@ -151,6 +155,10 @@ void testDoubleCell() {
     i3 = i2 * i1;
     if (i3.getValue()) {
         cout << "FAILED nullopt * test case" << endl;
+    }
+    DoubleCell i4 = i2 / i1;
+    if(i4.getValue()) {
+        cout << "FAILED nullopt / test case" << endl;
     }
     i3.setValue(4);
     i3 += i2;
