@@ -44,20 +44,20 @@ int main() {
     doubRow.push_back(make_unique<DoubleCell>(-7.7));
     doubRow.push_back(make_unique<DoubleCell>(4.1));
     doubleCells.push_back(move(doubRow));
-    cout << endl << "Integer cells:" << endl;
+    cout << endl << "Double cells:" << endl;
     printCells(doubleCells);
 
     vector<vector<unique_ptr<SpreadsheetCell<string>>>> stringCells;
     vector<unique_ptr<SpreadsheetCell<string>>> strRow;
     strRow.push_back(make_unique<StringCell>());
-    strRow.push_back(make_unique<DoubleCell>(3.7));
-    doubleCells.push_back(move(strRow));
+    strRow.push_back(make_unique<StringCell>("poobiss"));
+    stringCells.push_back(move(strRow));
     strRow.clear();
-    strRow.push_back(make_unique<DoubleCell>(-7.7));
-    strRow.push_back(make_unique<DoubleCell>(4.1));
-    doubleCells.push_back(move(strRow));
-    cout << endl << "Integer cells:" << endl;
-    printCells(doubleCells);
+    strRow.push_back(make_unique<StringCell>("lintflock"));
+    strRow.push_back(make_unique<StringCell>("Circulation"));
+    stringCells.push_back(move(strRow));
+    cout << endl << "String cells:" << endl;
+    printCells(stringCells);
 
     return 0;
 }
