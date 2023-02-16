@@ -75,6 +75,16 @@ IntCell &IntCell::operator*=(const IntCell &rhs) {
     return *this;
 }
 
+DoubleCell operator/(const IntCell &lhs, const IntCell &rhs) {
+    DoubleCell returnVal;
+    if (lhs.value && rhs.value && *rhs.value != 0) {
+        returnVal.setValue(*lhs.value / *rhs.value);
+    } else {
+        returnVal.setToNull();
+    }
+    return returnVal;
+}
+
 IntCell &IntCell::operator/=(const IntCell &rhs) {
     // if either value is nullopt, no change to `this`
     if (rhs.value && value && *rhs.value != 0) {
@@ -82,7 +92,6 @@ IntCell &IntCell::operator/=(const IntCell &rhs) {
     }
     return *this;
 }
-
 
 bool operator==(const IntCell &lhs, const IntCell &rhs) {
     if (lhs.value && rhs.value) {

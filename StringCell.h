@@ -3,12 +3,14 @@
 
 #include "SpreadsheetCell.h"
 
-class StringCell : public SpreadsheetCell<int> {
+using std::string;
+
+class StringCell : public SpreadsheetCell<string> {
 public:
     /* Constructors */
     StringCell();
 
-    explicit StringCell(int value);
+    explicit StringCell(string value);
 
     /* Override pure virtual method from parent */
     void printCell(std::ostream &outs) const override;

@@ -2,6 +2,7 @@
 #define INTCELL_H
 
 #include "SpreadsheetCell.h"
+#include "DoubleCell.h"
 
 class IntCell : public SpreadsheetCell<int> {
 public:
@@ -26,8 +27,8 @@ public:
 
     IntCell &operator*=(const IntCell &rhs);
 
-    // TODO: After implementing DoubleCell, uncomment and implement the following function
-    // friend DoubleCell operator / (const IntCell &lhs, const IntCell &rhs);
+    friend DoubleCell operator/(const IntCell &lhs, const IntCell &rhs);
+
     IntCell &operator/=(const IntCell &rhs);
 
     friend bool operator==(const IntCell &lhs, const IntCell &rhs);

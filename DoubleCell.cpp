@@ -6,7 +6,7 @@ using namespace std;
 DoubleCell::DoubleCell() : SpreadsheetCell() {
 }
 
-DoubleCell::DoubleCell(int value) : SpreadsheetCell(value) {
+DoubleCell::DoubleCell(double value) : SpreadsheetCell(value) {
 }
 
 void DoubleCell::printCell(std::ostream &outs) const {
@@ -73,6 +73,16 @@ DoubleCell &DoubleCell::operator*=(const DoubleCell &rhs) {
     return *this;
 }
 
+DoubleCell operator/(const DoubleCell &lhs, const DoubleCell &rhs) {
+    DoubleCell returnVal;
+    if (lhs.value && rhs.value && *rhs.value != 0) {
+        returnVal.setValue(*lhs.value / *rhs.value);
+    } else {
+        returnVal.setToNull();
+    }
+    return returnVal;
+}
+
 DoubleCell &DoubleCell::operator/=(const DoubleCell &rhs) {
     // if either value is nullopt, no change to `this`
     if (rhs.value && value && *rhs.value != 0) {
@@ -80,7 +90,6 @@ DoubleCell &DoubleCell::operator/=(const DoubleCell &rhs) {
     }
     return *this;
 }
-
 
 bool operator==(const DoubleCell &lhs, const DoubleCell &rhs) {
     if (lhs.value && rhs.value) {
