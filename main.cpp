@@ -50,7 +50,7 @@ int main() {
     vector<vector<unique_ptr<SpreadsheetCell<string>>>> stringCells;
     vector<unique_ptr<SpreadsheetCell<string>>> strRow;
     strRow.push_back(make_unique<StringCell>());
-    strRow.push_back(make_unique<StringCell>("poobiss"));
+    strRow.push_back(make_unique<StringCell>("cedar"));
     stringCells.push_back(move(strRow));
     strRow.clear();
     strRow.push_back(make_unique<StringCell>("lintflock"));
@@ -211,77 +211,69 @@ void testDoubleCell() {
 }
 
 void testStringCell() {
-//    DoubleCell i1;
-//    DoubleCell i2(.5);
-//
-//    DoubleCell i3 = i1 + i2;
-//    if (i3.getValue()) {
-//        cout << "FAILED nullopt + test case" << endl;
-//    }
-//    i3 = i1 - i2;
-//    if (i3.getValue()) {
-//        cout << "FAILED nullopt - test case" << endl;
-//    }
-//    i3 = i2 * i1;
-//    if (i3.getValue()) {
-//        cout << "FAILED nullopt * test case" << endl;
-//    }
-//    i3.setValue(4);
-//    i3 += i2;
-//    if (i3.getValue() != 4.5) {
-//        cout << "FAILED += test case" << endl;
-//    }
-//    i3 -= i1;
-//    if (i3.getValue() != 4.5) {
-//        cout << "FAILED -= nullopt test case" << endl;
-//    }
-//    i3 *= i2;
-//    if (i3.getValue() != 2.25) {
-//        cout << "FAILED *= test case" << endl;
-//    }
-//    i3 /= DoubleCell(10);
-//    if (i3.getValue() != 0.225) {
-//        cout << "FAILED /= test case" << endl;
-//    }
-//
-//    i1.setValue(0.2);
-//    cout << "Testing DoubleCell print and setNumChars methods" << endl;
-//    i1.printCell(cout);
-//    i2.printCell(cout);
-//    cout << endl;
-//    i1.setNumChars(5);
-//    i1.printCell(cout);
-//    cout << endl << "End testing DoubleCell print and setNumChars methods" << endl;
-//
-//    cout << endl << boolalpha;
-//    if (i1 == i2) {
-//        cout << "FAILED == test case" << endl;
-//    }
-//    if (!(i1 != i2)) {
-//        cout << "FAILED != test case" << endl;
-//    }
-//    if (!(i1 < i2)) {
-//        cout << "FAILED < test case" << endl;
-//    }
-//    if (!(i1 <= i2)) {
-//        cout << "FAILED <= test case" << endl;
-//    }
-//    if (i1 > i2) {
-//        cout << "FAILED > test case" << endl;
-//    }
-//    if (i1 >= i2) {
-//        cout << "FAILED >= test case" << endl;
-//    }
-//    i1.setValue(.5);
-//    if (!(i1 == i2)) {
-//        cout << "FAILED == test case 2" << endl;
-//    }
-//    if (!(i1 <= i2)) {
-//        cout << "FAILED <= test case 2" << endl;
-//    }
-//    if (!(i1 >= i2)) {
-//        cout << "FAILED >= test case 2" << endl;
-//    }
+    StringCell i1;
+    StringCell i2("Hello hi!");
+
+    StringCell i3 = i1 + i2;
+    if (i3.getValue()) {
+        cout << "FAILED nullopt + test case" << endl;
+    }
+    i3 = i2 + i1;
+    if (i3.getValue()) {
+        cout << "FAILED nullopt * test case" << endl;
+    }
+    i3.setValue("Ummn, ");
+    i3 += i2;
+    if (i3.getValue() != "Ummn, Hello hi!") {
+        cout << "FAILED += test case" << endl;
+    }
+    i3 *= 2;
+    if (i3.getValue() != "Ummn, Hello hi!Ummn, Hello hi!") {
+        cout << "FAILED *= test case" << endl;
+    }
+    i3 *= 0;
+    if (i3.getValue() != "") {
+        cout << "FAILED *= empty string test case" << endl;
+    }
+
+    i1.setValue("Cheeeese");
+    cout << "Testing StringCell print and setNumChars methods" << endl;
+    i1.printCell(cout);
+    i2.printCell(cout);
+    cout << endl;
+    i1.setNumChars(5);
+    i1.printCell(cout);
+    cout << endl << "End testing StringCell print and setNumChars methods" << endl;
+
+    cout << endl << boolalpha;
+    if (i1 == i2) {
+        cout << "FAILED == test case" << endl;
+    }
+    if (!(i1 != i2)) {
+        cout << "FAILED != test case" << endl;
+    }
+    if (!(i1 < i2)) {
+        cout << "FAILED < test case" << endl;
+    }
+    if (!(i1 <= i2)) {
+        cout << "FAILED <= test case" << endl;
+    }
+    if (i1 > i2) {
+        cout << "FAILED > test case" << endl;
+    }
+    if (i1 >= i2) {
+        cout << "FAILED >= test case" << endl;
+    }
+    i1.setValue("Hello hi!");
+    if (!(i1 == i2)) {
+        cout << "FAILED == test case 2" << endl;
+    }
+    if (!(i1 <= i2)) {
+        cout << "FAILED <= test case 2" << endl;
+    }
+    if (!(i1 >= i2)) {
+        cout << "FAILED >= test case 2" << endl;
+    }
 }
 
 template<typename T>
